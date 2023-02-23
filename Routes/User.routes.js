@@ -16,13 +16,16 @@ userRouter.post("/register", async (req,res)=>{
     const {name,email,pass,gender}=req.body
     try{
         bcrypt.hash(pass, 5, async (err, hash)=>{
+            if(err){
+                console.log("err Bcrypt",err)
+            }
             const user=new UserModel({name,email,pass:hash,gender})
             await user.save()
             res.status(200).send({message: "registration successful" })
         });
     }catch(err){
         res.send("Error in registering the user")
-        console.log(err)
+        // console.log(err)
     }
 });
 
