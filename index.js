@@ -11,9 +11,7 @@ const app = express();
 app.use(express.json());
 
 var cors = require('cors')
-app.use(cors(
-    {origin:"*"}
-))
+app.use(cors())
 
 
 app.get("/",(req,res)=>{
